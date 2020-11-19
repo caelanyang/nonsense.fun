@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>b言b语</title>
+    <title>My Words</title>
     <!-- <link rel="shortcut icon" href="./favicon.ico" /> -->
     <link type="text/css" rel="stylesheet" href="https://at.alicdn.com/t/font_1755564_z4mhxbw13mq.css"></link>
     <link href="https://fonts.loli.net/css?family=Noto+Serif+SC:200,300,900&display=swap&subset=chinese-simplified" rel="stylesheet">
@@ -15,7 +15,7 @@
     <meta name="google" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
     <meta name="verify" content="index,follow" />
-    <meta name="apple-mobile-web-app-title" content="b言b语">
+    <meta name="apple-mobile-web-app-title" content="碎碎念">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 </head>
@@ -147,26 +147,26 @@
 </style>
 <body>
     <header id="header">
-        <h1>b言b语</h1>
+        <h1>My Words</h1>
     </header>
     <main id="app">
         <aside>
             <p id="describe">
-                可以在这里简单介绍你自己
+                记录碎碎念
             </p>
         </aside>
-        <p class="tip">现在总共 b 了 {{count}} 条</p>
+        <p class="tip">一共有 {{count}} 条记录</p>
         <section class="item" v-for="item in contents" v-cloak>
             <p v-html='item.attributes.content'></p>
             <time v-bind:datetime="item.attributes.time">{{item.attributes.time}}</time>
         </section>
         <div class="load-ctn">
-            <button class="load-btn" v-on:click="loadMore" v-if="contents" v-cloak>再翻翻</button>
+            <button class="load-btn" v-on:click="loadMore" v-if="contents" v-cloak>下一页</button>
             <p class="tip" v-else>别急，加载呢</p>
         </div>
     </main>
     <footer>
-        <p class="center-text">Copyright © 2020 daibor, All Rights Reserved</p>
+        <p class="center-text">Copyright © 2020 Jiacheng, All Rights Reserved</p>
     </footer>
 </body>
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
@@ -176,9 +176,9 @@
         Query
     } = AV;
     AV.init({
-        appId: "aaa", //你的 leancloud 应用 id （设置-应用keys-AppID）
-        appKey: "aaa", //你的 leancloud 应用 AppKey （设置-应用keys-AppKey）
-        serverURLs: '国际版可删除该行，否则必须在后台绑定域名并填写在此'
+        appId: "t6MHsx8BoRjyUNeLn1ljSbJ1-MdYXbMMI", //你的 leancloud 应用 id （设置-应用keys-AppID）
+        appKey: "9DBExsW4xs4q5ytvuf6NrJJb", //你的 leancloud 应用 AppKey （设置-应用keys-AppKey）
+        serverURLs: 'https://t6MHsx8B.api.lncldglobal.com'
     });
 
     var query = new AV.Query('content');
@@ -209,7 +209,7 @@
     function getData(page = 0) {
         query.descending('createdAt').skip(page * 20).limit(20).find().then(function(results) {
             if (results.length == 0) {
-                alert('之前没 b 过了')
+                alert('没有更早的记录了')
             } else {
                 let resC = results;
                 reqData = false;
